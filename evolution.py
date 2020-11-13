@@ -47,12 +47,17 @@ def individual_fitness(population):   # calculates and sets the fitness value of
 
 def population_fitness(population):  # Calculate total fitness of population
     total_fitness = 0
+    best = 0
     population_size = len(population)
 
     for x in range(0, population_size):  # for each individual in population, add it's fitness to total fitness
+        if population[x].fitness > best:
+            best = population[x].fitness
         total_fitness += population[x].fitness
 
-    return total_fitness
+    total_best_mean = [total_fitness, best, total_fitness/population_size]
+
+    return total_best_mean
 
 
 def swap_tails(first, second, crosspoint):  # swaps the tails of first and individual from specified crosspoint onwards
