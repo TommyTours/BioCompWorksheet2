@@ -49,18 +49,24 @@ population_fitness = evolution.population_fitness(population)
 print("Fitness after selection: " + str(population_fitness[0]))
 
 best_and_mean = [[], []]
+best_ever = []
 
 for x in range(0, 200):
     population = new_generation(population)
     fitness = evolution.population_fitness(population)
+    if len(best_ever) == 0 or fitness[1] > best_ever[-1]:
+        best_ever.append(fitness[1])
+    else:
+        best_ever.append(best_ever[-1])
     best_and_mean[0].append(fitness[1])
     best_and_mean[1].append(fitness[2])
 
 plt.plot(best_and_mean[0])
 plt.plot(best_and_mean[1])
+plt.plot(best_ever)
 plt.ylabel('Fitness')
 plt.xlabel('Generation')
-plt.legend(['Best', 'Mean'])
+plt.legend(['Best', 'Mean', 'Best Ever'])
 plt.show()
 
 print("hah")
