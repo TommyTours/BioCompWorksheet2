@@ -102,3 +102,28 @@ def mutation(population, mutation_rate):
         offspring.append(new_individual)
 
     return offspring
+
+
+def get_best(population):
+    best_index = 0
+    best_fitness = 0
+    population_size = len(population)
+    for x in range(0, population_size):
+        if population[x].fitness > best_fitness:
+            best_fitness = population[x].fitness
+            best_index = x
+
+    return copy.deepcopy(population[best_index])
+
+
+def replace_worst_with_best(population, best):
+    worst_index = 0
+    worst_fitness = 50
+    population_size = len(population)
+    for x in range(0, population_size):
+        if population[x].fitness < worst_fitness:
+            worst_fitness = population[x].fitness
+            worst_index = x
+
+    population[worst_index] = best
+
