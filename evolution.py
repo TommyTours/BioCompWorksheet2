@@ -74,7 +74,7 @@ def crossover(population):  # performs crossover on each pair of individuals
     number_of_genes = len(population[0].gene)
     for x in range(0, population_size, 2):
         crosspoint = random.randint(0, number_of_genes - 1)  # picks a random crosspoint in the gene
-        swap_tails(population[x], population[+1], crosspoint)
+        swap_tails(population[x], population[x+1], crosspoint)
         population[x].fitness = 0
         population[x+1].fitness = 0  # resets fitness value as crossover has modified it.
 
